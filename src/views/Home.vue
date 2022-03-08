@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Toast v-if="showToast" />
+    <transition name="toast">
+        <Toast v-if="showToast" />
+    </transition>
     <div class="todos">
         <input 
             type="text" 
@@ -17,7 +19,7 @@
         </div>
         <div v-else>Woohoo, nothing left todo!</div>
         </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -92,4 +94,28 @@ export default {
   .todos li:hover {
     cursor: pointer;
   }
+
+
+  .toast-enter-from {
+      opacity: 0;
+      transform: translateY(-60px);
+  }
+  .toast-enter-active {
+      transition: all 0.2s ease;
+  }
+  .toast-enter-to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+    .toast-leave-from {
+        opacity: 1;
+  }
+  .toast-leave-active {
+      transform: all 0.2s ease;
+  }
+  .toast-leave-to {
+      opacity: 0;
+  }
+  
 </style>
