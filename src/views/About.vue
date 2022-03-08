@@ -8,8 +8,6 @@
 
 <script>
 export default {
-  setup() {
-  }
 }
 </script>
 
@@ -18,4 +16,5 @@ export default {
     max-width: 600px;
     margin: 20px auto;
   }
+
 </style>

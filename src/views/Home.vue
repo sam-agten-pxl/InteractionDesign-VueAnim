@@ -7,7 +7,7 @@
         <input 
             type="text" 
             v-model="newTodo" 
-            @keypress.enter="addTodo(newTodo)"
+            @keypress.enter="addTodo"
             placeholder="Add a new todo..."
         />
         <transition name="content" mode="out-in">
@@ -32,10 +32,11 @@ export default {
   data: function() {
       return {
           showToast: false,
+          newTodo: '',
           todos: [
               {text: 'Make planning', id: 1},
               {text: 'Play Midnight Protocol', id: 2}
-          ]
+          ],
       }
   },
   mounted() {
@@ -46,16 +47,17 @@ export default {
           this.showToast = true;
           setTimeout(() => this.showToast = false, 3000);
       },
-      addTodo: function(newTodo) {
-          if(newTodo)
+      addTodo: function() {
+          if(this.newTodo)
           {
               const id = Math.random();
-              this.todos = [{text: newTodo, id}, ...this.todos]
+              this.todos = [{text: this.newTodo, id}, ...this.todos]
           }
           else
           {
               this.triggerToast();
           }
+          this.newTodo= "";
       },
       deleteTodo: function(id) {
           this.todos = this.todos.filter(todo => todo.id != id);
