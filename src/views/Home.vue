@@ -10,15 +10,17 @@
             @keypress.enter="addTodo(newTodo)"
             placeholder="Add a new todo..."
         />
-        <div v-if="todos.length">
-            <transition-group tag="ul" name="list" appear>
-            <li v-for="todo in todos" :key="todo.id" @click="this.deleteTodo(todo.id)">
-                {{ todo.text }}
-            </li>
-            </transition-group>
-        </div>
-        <div v-else>Woohoo, nothing left todo!</div>
-        </div>
+        <transition name="content" mode="out-in">
+            <div v-if="todos.length">
+                <transition-group tag="ul" name="list" appear>
+                <li v-for="todo in todos" :key="todo.id" @click="this.deleteTodo(todo.id)">
+                    {{ todo.text }}
+                </li>
+                </transition-group>
+            </div>
+            <div v-else>Woohoo, nothing left todo!</div>
+        </transition>
+    </div>
     </div>
 </template>
 
@@ -150,6 +152,24 @@ export default {
     }
 
     .list-move {
+        transition: all 0.2s ease;
+    }
+
+    .content-enter-from,
+    .content-leave-to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .content-enter-to,
+    .content-leave-from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .content-enter-active,
+    .content-leave-active
+    {
         transition: all 0.2s ease;
     }
   
