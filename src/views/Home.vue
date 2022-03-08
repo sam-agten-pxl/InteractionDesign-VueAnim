@@ -63,59 +63,63 @@ export default {
 </script>
 
 <style>
- .todos {
-    max-width: 400px;
-    margin: 20px auto;
-    position: relative;
-  }
-  input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-  }
-  .todos ul {
-    position: relative;
-    padding: 0;
-  }
-  .todos li {
-    list-style-type: none;
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    background: white;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .todos li:hover {
-    cursor: pointer;
-  }
+    .todos {
+        max-width: 400px;
+        margin: 20px auto;
+        position: relative;
+    }
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+    .todos ul {
+        position: relative;
+        padding: 0;
+    }
+    .todos li {
+        list-style-type: none;
+        display: block;
+        margin-bottom: 10px;
+        padding: 10px;
+        background: white;
+        box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .todos li:hover {
+        cursor: pointer;
+    }
 
-
-  .toast-enter-from {
-      opacity: 0;
-      transform: translateY(-60px);
-  }
-  .toast-enter-active {
-      transition: all 0.2s ease;
-  }
-  .toast-enter-to {
-      opacity: 1;
-      transform: translateY(0);
-  }
+    .toast-enter-active {
+        animation: wobble 0.5s ease;
+    }
 
     .toast-leave-from {
         opacity: 1;
-  }
-  .toast-leave-active {
-      transform: all 0.2s ease;
-  }
-  .toast-leave-to {
-      opacity: 0;
-  }
+    }
+    .toast-leave-active {
+        transition: all 0.2s ease;
+    }
+    .toast-leave-to {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+
+    @keyframes wobble
+    {
+        0% {transform: translateY(-60px); opacity: 0;}
+        50% {transform: translateY(0); opacity: 1;}
+        60% {transform: translateX(8px);}
+        70% {transform: translateX(-8px);}
+        80% {transform: translateX(4px);}
+        90% {transform: translateX(-4px);}
+        100% {transform: translateX(0);}
+        
+    }
   
 </style>
